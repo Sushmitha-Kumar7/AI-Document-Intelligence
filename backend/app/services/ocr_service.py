@@ -1,11 +1,21 @@
 import io
-
+import os
+import shutil
 import fitz
 import pytesseract
 from PIL import Image
-pytesseract.pytesseract.tesseract_cmd = (
-    r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-)
+# Configure Tesseract for Windows and Linux/Render
+if os.name == "nt":
+    windows_tesseract = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
+    if os.path.exists(windows_tesseract):
+        pytesseract.pytesseract.tesseract_cmd = windows_tesseract
+
+else:
+    linux_tesseract = shutil.which("tesseract")
+
+    if linux_tesseract:
+        pytesseract.pytesseract.tesseract_cmd = linux_tesseract
 
 def extract_text(filename: str, content: bytes) -> dict:
     """
