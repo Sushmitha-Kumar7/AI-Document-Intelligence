@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DocuMind AI | Analysis Result</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         BACKGROUND GLOW
+    ====================================================== -->
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ✦
+            </div>
+
+            <div>
+
+                <div class="brand-name">
+                    DocuMind <span>AI</span>
+                </div>
+
+                <div class="brand-tagline">
+                    Document Intelligence Platform
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-right">
+
+            <a href="index.html" class="nav-link">
+                Dashboard
+            </a>
+
+            <a href="result.html" class="nav-link active">
+                Results
+            </a>
+
+            <div class="api-status">
+
+                <span class="status-dot"></span>
+
+                API Online
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="result-page">
+
+
+        <!-- =================================================
+             RESULT HEADER
+        ================================================== -->
+
+        <section class="result-header">
+
+            <div class="hero-badge">
+                <span>✦</span>
+                DOCUMENT ANALYSIS COMPLETE
+            </div>
+
+
+            <h1>
+                Document processed
+                <span>successfully.</span>
+            </h1>
+
+
+            <p>
+                Review the extracted information, financial validation,
+                and supporting evidence below.
+            </p>
+
+        </section>
+
+        <!-- =================================================
+            DOCUMENT PREVIEW
+        ================================================== -->
+
+        <section class="document-preview-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        DOCUMENT PREVIEW
+                    </span>
+
+                    <h2>
+                        Uploaded document
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="document-preview-card">
+
+                <div class="document-preview-info">
+
+                    <div class="preview-file-icon">
+                        📄
+                    </div>
+
+                    <div>
+
+                        <h3 id="previewFileName">
+                            Processing...
+                        </h3>
+
+                        <p id="previewFileType">
+                            Uploaded document
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="documentPreview"
+                    class="document-preview"
+                >
+
+                    <!-- Preview inserted by JavaScript -->
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================================
+             DOCUMENT SUMMARY
+        ================================================== -->
+
+        <section class="result-summary">
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    ◫
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        DOCUMENT
+                    </span>
+
+                    <h2 id="documentName">
+                        Processing...
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    ◈
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        TYPE
+                    </span>
+
+                    <h2 id="documentType">
+                        —
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card validation-summary">
+
+                <div class="summary-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        VALIDATION
+                    </span>
+
+                    <h2 id="overallStatus">
+                        —
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             EXTRACTION SECTION
+        ================================================== -->
+
+        <section class="result-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        EXTRACTED INFORMATION
+                    </span>
+
+                    <h2>
+                        Document fields
+                    </h2>
+
+                </div>
+
+                <span id="fieldCount" class="count-badge">
+                    0 fields
+                </span>
+
+            </div>
+
+
+            <div id="fieldsContainer" class="fields-grid">
+
+                <!-- Fields inserted by JavaScript -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             LINE ITEMS
+        ================================================== -->
+
+        <section
+            id="lineItemsSection"
+            class="result-section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        TABLE EXTRACTION
+                    </span>
+
+                    <h2>
+                        Line items
+                    </h2>
+
+                </div>
+
+                <span id="itemCount" class="count-badge">
+                    0 items
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="items-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Description
+                            </th>
+
+                            <th>
+                                Quantity
+                            </th>
+
+                            <th>
+                                Unit Price
+                            </th>
+
+                            <th>
+                                Tax
+                            </th>
+
+                            <th>
+                                Line Total
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="lineItemsBody">
+
+                        <!-- Rows inserted by JavaScript -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             VALIDATION
+        ================================================== -->
+
+        <section class="result-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        FINANCIAL VALIDATION
+                    </span>
+
+                    <h2>
+                        Validation checks
+                    </h2>
+
+                </div>
+
+                <span id="validationCount" class="count-badge">
+                    0 checks
+                </span>
+
+            </div>
+
+
+            <div
+                id="validationContainer"
+                class="validation-list"
+            >
+
+                <!-- Validation checks inserted by JavaScript -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             EXTRACTION NOTES
+        ================================================== -->
+
+        <section
+            id="notesSection"
+            class="result-section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        PROCESSING NOTES
+                    </span>
+
+                    <h2>
+                        Extraction notes
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="notesContainer"
+                class="notes-card"
+            >
+
+                <!-- Notes inserted by JavaScript -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ACTIONS
+        ================================================== -->
+
+        <section class="result-actions">
+
+            <a
+                href="index.html"
+                class="secondary-button"
+            >
+                ← Analyze another document
+            </a>
+            <button
+                type="button"
+                class="secondary-button"
+                onclick="downloadValidationReport()"
+            >
+                Download validation report
+            </button>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <span>
+            DocuMind AI
+        </span>
+
+        <span>
+            Intelligent Document Extraction & Validation
+        </span>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         RESULT JAVASCRIPT
+    ====================================================== -->
+
+    <script src="result.js"></script>
+
+</body>
+
+</html>

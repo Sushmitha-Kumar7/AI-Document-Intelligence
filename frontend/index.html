@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DocuMind AI | Intelligent Document Intelligence</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">✦</div>
+
+            <div>
+                <div class="brand-name">
+                    DocuMind <span>AI</span>
+                </div>
+
+                <div class="brand-tagline">
+                    Document Intelligence Platform
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="nav-right">
+
+            <a href="index.html" class="nav-link active">
+                Dashboard
+            </a>
+
+            <a href="result.html" class="nav-link">
+                Results
+            </a>
+
+            <div class="api-status">
+                <span class="status-dot"></span>
+                API Online
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+    <main class="dashboard">
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="hero-badge">
+                <span>✦</span>
+                AI-POWERED DOCUMENT ANALYSIS
+            </div>
+
+            <h1>
+                Turn documents into
+                <span>structured intelligence.</span>
+            </h1>
+
+            <p>
+                Extract critical information from financial documents,
+                validate calculations and understand the evidence —
+                automatically.
+            </p>
+
+        </section>
+
+
+        <!-- DOCUMENT TYPE -->
+        <section class="document-type-section">
+
+            <div class="section-label">
+                SELECT DOCUMENT TYPE
+            </div>
+
+            <div class="document-type-grid">
+
+                <!-- INVOICE -->
+                <button
+                    type="button"
+                    class="type-card"
+                    data-type="invoice"
+                >
+
+                    <div class="type-icon invoice-icon">
+                        ▤
+                    </div>
+
+                    <div class="type-content">
+
+                        <h3>Invoice</h3>
+
+                        <p>
+                            Items, tax, totals & vendor details
+                        </p>
+
+                    </div>
+
+                    <div class="type-check">
+                        ✓
+                    </div>
+
+                </button>
+
+
+                <!-- BALANCE SHEET -->
+                <button
+                    type="button"
+                    class="type-card"
+                    data-type="balance_sheet"
+                >
+
+                    <div class="type-icon balance-icon">
+                        ◫
+                    </div>
+
+                    <div class="type-content">
+
+                        <h3>Balance Sheet</h3>
+
+                        <p>
+                            Assets, liabilities & equity
+                        </p>
+
+                    </div>
+
+                    <div class="type-check">
+                        ✓
+                    </div>
+
+                </button>
+
+
+                <!-- PROFIT AND LOSS -->
+                <button
+                    type="button"
+                    class="type-card"
+                    data-type="profit_and_loss"
+                >
+
+                    <div class="type-icon profit-icon">
+                        ⌁
+                    </div>
+
+                    <div class="type-content">
+
+                        <h3>Profit & Loss</h3>
+
+                        <p>
+                            Income, expenses & profitability
+                        </p>
+
+                    </div>
+
+                    <div class="type-check">
+                        ✓
+                    </div>
+
+                </button>
+
+
+                <!-- CASH FLOW -->
+                <button
+                    type="button"
+                    class="type-card"
+                    data-type="cash_flow_statement"
+                >
+
+                    <div class="type-icon cash-icon">
+                        ◈
+                    </div>
+
+                    <div class="type-content">
+
+                        <h3>Cash Flow</h3>
+
+                        <p>
+                            Operating, investing & financing
+                        </p>
+
+                    </div>
+
+                    <div class="type-check">
+                        ✓
+                    </div>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- UPLOAD -->
+        <section class="upload-section">
+
+            <div
+                class="upload-card"
+                id="dropZone"
+            >
+
+                <div class="upload-icon">
+                    ⇧
+                </div>
+
+                <h2>
+                    Upload your document
+                </h2>
+
+                <p class="upload-description">
+                    Drag & drop your document here or choose a file
+                </p>
+
+
+                <div class="supported-types">
+
+                    <span>PDF</span>
+                    <span>JPG</span>
+                    <span>PNG</span>
+                    <span>Max 3 pages</span>
+
+                </div>
+
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    hidden
+                >
+
+
+                <button
+                    type="button"
+                    class="upload-button"
+                    id="chooseFileBtn"
+                >
+
+                    <span>
+                        Choose Document
+                    </span>
+
+                    <span class="button-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <div
+                    id="selectedTypeMessage"
+                    class="selected-type-message"
+                >
+                    Select a document type above to continue
+                </div>
+
+
+                <div class="drop-hint">
+                    Your document is processed securely through the AI pipeline
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- DOCUMENT HISTORY -->
+        <section class="history-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        DOCUMENT HISTORY
+                    </span>
+
+                    <h2>
+                        Recently processed
+                    </h2>
+
+                </div>
+
+                <span id="historyCount" class="count-badge">
+                    0 documents
+                </span>
+
+            </div>
+
+
+            <div
+                id="documentHistory"
+                class="history-list"
+            >
+
+                <div class="history-empty">
+                    No documents processed yet.
+                </div>
+
+            </div>
+
+        </section>
+        
+        <!-- FEATURES -->
+        <section class="features">
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    01
+                </div>
+
+                <div>
+
+                    <h3>
+                        AI Extraction
+                    </h3>
+
+                    <p>
+                        Extract structured fields and tables
+                        from your documents.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    02
+                </div>
+
+                <div>
+
+                    <h3>
+                        Financial Validation
+                    </h3>
+
+                    <p>
+                        Automatically verify financial
+                        calculations and reconciliation.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    03
+                </div>
+
+                <div>
+
+                    <h3>
+                        Evidence & Confidence
+                    </h3>
+
+                    <p>
+                        See where extracted information came
+                        from and how reliable it is.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <span>
+            DocuMind AI
+        </span>
+
+        <span>
+            Intelligent Document Extraction & Validation
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

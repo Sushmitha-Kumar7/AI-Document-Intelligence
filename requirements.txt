@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+python-multipart
+pydantic-settings
+sqlalchemy
+aiosqlite
+pymupdf
+pillow
+pytesseract
+openai
+python-dotenv
