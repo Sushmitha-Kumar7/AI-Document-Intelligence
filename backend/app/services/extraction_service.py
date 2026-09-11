@@ -558,20 +558,63 @@ Rate column.
 
 3. discount
 
-Use ONLY the value physically printed under "Disc. %"
-for that SAME ROW.
+THIS FIELD IS CRITICAL.
 
-Example:
+For EVERY invoice line item, carefully inspect the
+"Disc. %" column in the enlarged numeric table.
+
+Read the discount percentage printed on the SAME ROW
+as that product.
+
+If the invoice shows:
 
 99 %
 
-Return:
+return:
 
-"99"
+"value": "99"
 
-If the cell is empty:
+If the invoice shows:
+
+5 %
+
+return:
+
+"value": "5"
+
+If the invoice shows:
+
+10 %
+
+return:
+
+"value": "10"
+
+If the discount cell is visibly empty, return:
 
 "value": null
+
+DO NOT calculate the discount.
+
+DO NOT infer the discount from the line amount.
+
+DO NOT infer the discount from quantity × rate.
+
+DO NOT copy the invoice-level discount into line items.
+
+The discount must come ONLY from the physically printed
+"Disc. %" cell belonging to that exact product row.
+
+IMPORTANT:
+
+If a product row visibly contains "99" or "99%" under
+the Disc. % column, you MUST extract it as the discount
+for that row.
+
+GST 9%, CGST 9%, SGST 9%, IGST, tax percentages, and
+other tax rates are NOT discounts.
+
+Never put GST or tax percentages into the discount field.
 
 
 VERY IMPORTANT:

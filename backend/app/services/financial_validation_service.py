@@ -186,13 +186,11 @@ def check_value(formula, inputs, calculated, reported):
 # ============================================================
 
 def validate_invoice(fields, line_items=None):
-
     results = []
-
     line_items = line_items or []
 
     # --------------------------------------------------------
-    # 1. Quantity × Unit Price ≈ Line Total
+    # 1. Quantity × Unit Price - Discount ≈ Line Total
     # --------------------------------------------------------
 
     calculated_subtotal = Decimal("0")
@@ -215,6 +213,35 @@ def validate_invoice(fields, line_items=None):
             get_field_value(item.get("line_total"))
         )
 
+        # Optional line-item discount percentage
+        discount = None
+
+        for discount_key in [
+            "discount",
+            "discount_percentage",
+            "discount_percent"
+        ]:
+            if item.get(discount_key) is not None:
+                discount = to_decimal(
+                    get_field_value(item.get(discount_key))
+                )
+                break
+
+        # Support different possible discount field names
+        discount = None
+
+        for discount_key in [
+            "discount",
+            "discount_percent",
+            "discount_percentage"
+        ]:
+            if discount_key in item:
+                discount = to_decimal(
+                    get_field_value(item.get(discount_key))
+                )
+                if discount is not None:
+                    break
+
         if (
             quantity is not None
             and unit_price is not None
@@ -223,13 +250,36 @@ def validate_invoice(fields, line_items=None):
 
             calculated = quantity * unit_price
 
+            # Apply discount percentage when present
+            if discount is not None:
+                calculated = calculated * (
+                    Decimal("1") - discount / Decimal("100")
+                )
+
+            formula = (
+                f"Line {index}: quantity × unit price"
+            )
+
+            if discount is not None and discount > 0:
+                formula += " − discount ≈ line total"
+
+            inputs = {
+                "quantity": float(quantity),
+                "unit_price": float(unit_price),
+                "discount_percentage": (
+                    float(discount)
+                    if discount is not None
+                    else None
+                )
+            }
+
+            if discount is not None:
+                inputs["discount_percent"] = float(discount)
+
             results.append(
                 check_value(
-                    f"Line {index}: quantity × unit price ≈ line total",
-                    {
-                        "quantity": float(quantity),
-                        "unit_price": float(unit_price)
-                    },
+                    formula,
+                    inputs,
                     calculated,
                     line_total
                 )
@@ -253,9 +303,11 @@ def validate_invoice(fields, line_items=None):
         for key, field in fields.items():
 
             if "subtotal" in key.lower():
+
                 subtotal = to_decimal(
                     get_field_value(field)
                 )
+
                 break
 
         if subtotal is not None:
@@ -284,7 +336,10 @@ def validate_invoice(fields, line_items=None):
     for key, field in fields.items():
 
         key_lower = key.lower()
-        value = to_decimal(get_field_value(field))
+
+        value = to_decimal(
+            get_field_value(field)
+        )
 
         if subtotal is None and "subtotal" in key_lower:
             subtotal = value
@@ -325,7 +380,6 @@ def validate_invoice(fields, line_items=None):
 
     # --------------------------------------------------------
     # 4. Cash Paid - Total ≈ Change
-    # Only when those fields actually exist
     # --------------------------------------------------------
 
     cash_paid = None
@@ -334,7 +388,10 @@ def validate_invoice(fields, line_items=None):
     for key, field in fields.items():
 
         key_lower = key.lower()
-        value = to_decimal(get_field_value(field))
+
+        value = to_decimal(
+            get_field_value(field)
+        )
 
         if cash_paid is None and (
             "cash paid" in key_lower
@@ -367,7 +424,6 @@ def validate_invoice(fields, line_items=None):
         )
 
     return results
-
 
 # ============================================================
 # BALANCE SHEET VALIDATION

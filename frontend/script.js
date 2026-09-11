@@ -1,5 +1,5 @@
 const API_URL =
-    "http://127.0.0.1:8000/api/v1/documents/process";
+    "/api/v1/documents/process";
 
 
 // =========================================================
@@ -447,7 +447,7 @@ async function processFile(file) {
             message =
                 "Unable to connect to the Document Intelligence API.\n\n" +
                 "Please make sure the FastAPI server is running at:\n" +
-                "http://127.0.0.1:8000";
+                "";
 
         }
 
@@ -488,7 +488,7 @@ async function loadDocumentHistory() {
     try {
 
         const response = await fetch(
-            "http://127.0.0.1:8000/api/v1/documents"
+            "/api/v1/documents"
         );
 
         if (!response.ok) {
@@ -615,7 +615,7 @@ if (document.getElementById("documentHistory")) {
 function openStoredDocument(documentId) {
 
     const fileUrl =
-        `http://127.0.0.1:8000/api/v1/documents/file/${documentId}`;
+        `/api/v1/documents/file/${documentId}`;
 
     window.open(fileUrl, "_blank");
 }

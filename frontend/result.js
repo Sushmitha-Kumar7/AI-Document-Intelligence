@@ -25,17 +25,10 @@ if (previewFileName) {
 }
 
 if (result.document_storage && previewContainer) {
-
     const storedPath = result.document_storage.file_path;
 
-    // Convert:
-    // storage/documents/abc123.pdf
-    // into:
-    // http://127.0.0.1:8000/storage/documents/abc123.pdf
-
     const fileUrl =
-        "http://127.0.0.1:8000/" +
-        storedPath.replace(/\\/g, "/");
+    `/api/v1/documents/file/${result.document_storage.id}`;
 
     const fileExtension =
         storedPath.split(".").pop().toLowerCase();
