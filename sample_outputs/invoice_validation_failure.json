@@ -1,0 +1,29 @@
+{
+  "document_name": "invoice_validation_test.jpg",
+  "document_type": "invoice",
+  "processing_status": "FAILED_VALIDATION",
+  "ai_extraction": {
+    "invoice_number": "INV-TEST-001",
+    "currency": "INR",
+    "subtotal": 1000.00,
+    "tax_amount": 180.00,
+    "total_amount": 1300.00
+  },
+  "financial_validation": {
+    "overall_status": "FAIL",
+    "checks": [
+      {
+        "check": "Subtotal + tax = total",
+        "formula": "subtotal + tax_amount",
+        "inputs": {
+          "subtotal": 1000.00,
+          "tax_amount": 180.00
+        },
+        "calculated": 1180.00,
+        "reported": 1300.00,
+        "variance": 120.00,
+        "status": "FAIL"
+      }
+    ]
+  }
+}

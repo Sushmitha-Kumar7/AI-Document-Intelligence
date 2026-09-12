@@ -1,0 +1,40 @@
+{
+  "document_name": "Consolidated Balance Sheet 2017.pdf",
+  "document_type": "balance_sheet",
+  "processing_status": "PASS",
+  "ai_extraction": {
+    "currency": "INR",
+    "periods": ["2017", "2016"],
+    "assets": {
+      "total_assets_2017": 1000000.00,
+      "total_assets_2016": 900000.00
+    },
+    "liabilities_and_equity": {
+      "total_liabilities_and_equity_2017": 1000000.00,
+      "total_liabilities_and_equity_2016": 900000.00
+    }
+  },
+  "financial_validation": {
+    "overall_status": "PASS",
+    "checks": [
+      {
+        "check": "Assets = Liabilities + Equity",
+        "period": "2017",
+        "formula": "total liabilities and equity",
+        "calculated": 1000000.00,
+        "reported": 1000000.00,
+        "variance": 0.00,
+        "status": "PASS"
+      },
+      {
+        "check": "Assets = Liabilities + Equity",
+        "period": "2016",
+        "formula": "total liabilities and equity",
+        "calculated": 900000.00,
+        "reported": 900000.00,
+        "variance": 0.00,
+        "status": "PASS"
+      }
+    ]
+  }
+}

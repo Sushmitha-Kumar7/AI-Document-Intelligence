@@ -1,0 +1,52 @@
+{
+  "document_name": "batch1-1109.jpg",
+  "document_type": "invoice",
+  "processing_status": "PASS",
+  "ai_extraction": {
+    "invoice_number": "INV-1109",
+    "invoice_date": "2025-11-18",
+    "vendor_name": "ABC Supplies",
+    "customer_name": "XYZ Company",
+    "currency": "INR",
+    "subtotal": 1000.00,
+    "tax_amount": 180.00,
+    "total_amount": 1180.00,
+    "line_items": [
+      {
+        "description": "Product A",
+        "quantity": 10,
+        "unit_price": 100.00,
+        "line_total": 1000.00
+      }
+    ]
+  },
+  "financial_validation": {
+    "overall_status": "PASS",
+    "checks": [
+      {
+        "check": "Line item calculation",
+        "formula": "quantity × unit_price",
+        "inputs": {
+          "quantity": 10,
+          "unit_price": 100.00
+        },
+        "calculated": 1000.00,
+        "reported": 1000.00,
+        "variance": 0.00,
+        "status": "PASS"
+      },
+      {
+        "check": "Subtotal + tax = total",
+        "formula": "subtotal + tax_amount",
+        "inputs": {
+          "subtotal": 1000.00,
+          "tax_amount": 180.00
+        },
+        "calculated": 1180.00,
+        "reported": 1180.00,
+        "variance": 0.00,
+        "status": "PASS"
+      }
+    ]
+  }
+}

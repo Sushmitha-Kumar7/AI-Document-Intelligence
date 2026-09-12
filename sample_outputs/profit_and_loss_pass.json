@@ -1,0 +1,54 @@
+{
+  "document_name": "Consolidated Profit & Loss 2018.pdf",
+  "document_type": "profit_and_loss",
+  "processing_status": "PASS",
+  "ai_extraction": {
+    "currency": "INR",
+    "periods": ["2018", "2017"],
+    "2018": {
+      "consolidated_profit": 185100242.00,
+      "brought_forward_balance": 345323284.00,
+      "impact_on_amalgamation": 0.00,
+      "total_profit": 530423526.00
+    },
+    "2017": {
+      "consolidated_profit": 152530250.00,
+      "brought_forward_balance": 248255886.00,
+      "impact_on_amalgamation": 274507.00,
+      "total_profit": 401060643.00
+    }
+  },
+  "financial_validation": {
+    "overall_status": "PASS",
+    "checks": [
+      {
+        "check": "Total profit reconciliation",
+        "period": "2018",
+        "formula": "consolidated profit + brought forward balance + impact on amalgamation",
+        "inputs": {
+          "consolidated_profit": 185100242.00,
+          "brought_forward_balance": 345323284.00,
+          "impact_on_amalgamation": 0.00
+        },
+        "calculated": 530423526.00,
+        "reported": 530423526.00,
+        "variance": 0.00,
+        "status": "PASS"
+      },
+      {
+        "check": "Total profit reconciliation",
+        "period": "2017",
+        "formula": "consolidated profit + brought forward balance + impact on amalgamation",
+        "inputs": {
+          "consolidated_profit": 152530250.00,
+          "brought_forward_balance": 248255886.00,
+          "impact_on_amalgamation": 274507.00
+        },
+        "calculated": 401060643.00,
+        "reported": 401060643.00,
+        "variance": 0.00,
+        "status": "PASS"
+      }
+    ]
+  }
+}

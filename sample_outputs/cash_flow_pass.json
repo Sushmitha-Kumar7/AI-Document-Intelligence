@@ -1,0 +1,47 @@
+{
+  "document_name": "Consolidated Cash Flow Statement 2017.pdf",
+  "document_type": "cash_flow_statement",
+  "processing_status": "PASS",
+  "ai_extraction": {
+    "currency": "INR",
+    "period": "2017",
+    "operating_cash_flow": 500000.00,
+    "investing_cash_flow": -200000.00,
+    "financing_cash_flow": -100000.00,
+    "net_increase_in_cash": 200000.00,
+    "opening_cash_balance": 300000.00,
+    "closing_cash_balance": 500000.00
+  },
+  "financial_validation": {
+    "overall_status": "PASS",
+    "checks": [
+      {
+        "check": "Operating + investing + financing = net increase",
+        "period": "2017",
+        "formula": "operating + investing + financing",
+        "inputs": {
+          "operating": 500000.00,
+          "investing": -200000.00,
+          "financing": -100000.00
+        },
+        "calculated": 200000.00,
+        "reported": 200000.00,
+        "variance": 0.00,
+        "status": "PASS"
+      },
+      {
+        "check": "Opening balance + net increase = closing balance",
+        "period": "2017",
+        "formula": "opening cash + net increase",
+        "inputs": {
+          "opening_cash": 300000.00,
+          "net_increase": 200000.00
+        },
+        "calculated": 500000.00,
+        "reported": 500000.00,
+        "variance": 0.00,
+        "status": "PASS"
+      }
+    ]
+  }
+}
